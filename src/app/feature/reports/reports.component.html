@@ -1,0 +1,93 @@
+<div class="container">
+  <div class="head">
+    <div class="info">
+      <h3>Reports</h3>
+      <p>Easily generate a report of your transactions</p>
+    </div>
+    <div class="filters" [formGroup]="form">
+      <app-select
+        formControlName="projectId"
+        [options]="selectData.projects"
+      ></app-select>
+      <app-select
+        formControlName="gatewayId"
+        [options]="selectData.gateways"
+      ></app-select>
+      <input
+        type="text"
+        (focus)="setDateType($event)"
+        (blur)="setDateType($event)"
+        formControlName="from"
+        placeholder="From"
+      />
+      <input
+        type="text"
+        (focus)="setDateType($event, 'date')"
+        (blur)="setDateType($event)"
+        formControlName="to"
+        placeholder="To"
+      />
+      <button class="submit" (click)="submit()">Generate report</button>
+    </div>
+  </div>
+  <div class="report-wraper" [ngClass]="{hasChart}">
+    <div class="content">
+      <div class="report-wrap">
+        <div class="info">{{ activeInfoText }}</div>
+        <div class="projects">
+          <ng-container *ngFor="let project of projects">
+            <div
+              class="project"
+              *ngIf="
+                !isSingleProject ||
+                (isSingleProject && project.projectId === activeProject)
+              "
+            >
+              <div
+                class="project-info"
+                (click)="toggleProject(project.projectId)"
+              >
+                <span>{{ project.name }}</span>
+                <span>
+                  TOTAL:
+                  {{ totalPrices[project.projectId] || 0 | number }} USD</span
+                >
+              </div>
+              <div class="gateways" *ngIf="activeProject === project.projectId">
+                <div class="gateway">
+                  <span>Date</span>
+                  <span>Gateway</span>
+                  <span>Transaction ID</span>
+                  <span>Amount</span>
+                </div>
+                <ng-container *ngIf="reports[project.projectId]">
+                  <div
+                    class="gateway"
+                    *ngFor="let report of reports[project.projectId]"
+                  >
+                    <span>{{ report.created | date: "MM/dd/yyyy" }}</span>
+                    <span>{{ gatewayNames[report.gatewayId] }}</span>
+                    <span>{{ report.paymentId }}</span>
+                    <span>{{ report.amount | number }} USD</span>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="chart">
+      <div class="chart-wrap" *ngIf="hasChart">
+        <div class="chart-head">
+          <span *ngFor="let item of chartList">{{ item.name }}</span>
+        </div>
+        <canvas baseChart [data]="chartData" type="doughnut"></canvas>
+      </div>
+      <div class="total">
+        {{ hasChart ? totalPreText[chartType] : "" }}TOTAL:
+        {{ totalPrices["total"] | number }} USD
+      </div>
+    </div>
+  </div>
+</div>

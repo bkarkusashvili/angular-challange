@@ -1,0 +1,42 @@
+header {
+  display: flex;
+  align-items: center;
+  height: 80px;
+  border-bottom: 2px solid #f3f6f9;
+  padding-left: 35px;
+  padding-right: 100px;
+  box-sizing: border-box;
+
+  .wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 38px;
+
+    .user {
+      display: flex;
+      align-items: center;
+
+      .avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 43px;
+        height: 43px;
+        margin-right: 11px;
+        background-color: #f6ca65;
+        border-radius: 5px;
+        color: #ffffff;
+        font-size: 23px;
+        font-weight: 700;
+      }
+
+      .name {
+        color: #005b96;
+        font-size: 16px;
+        font-weight: 700;
+      }
+    }
+  }
+}

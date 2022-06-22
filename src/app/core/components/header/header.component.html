@@ -1,0 +1,10 @@
+<header>
+  <img src="/assets/svg/logo.svg" alt="Logo" />
+  <div class="wrap">
+    <img src="/assets/svg/list.svg" alt="" />
+    <div class="user" *ngIf="user$ | async as user">
+      <span class="avatar">{{ user.avatar }}</span>
+      <span class="name">{{ user.fullName }}</span>
+    </div>
+  </div>
+</header>

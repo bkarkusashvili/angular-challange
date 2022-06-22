@@ -1,0 +1,17 @@
+<div
+  class="wrap"
+  appClickOutside
+  [ngClass]="{ isOpen }"
+  (clickOutside)="close()"
+  (click)="toggle()"
+>
+  <span class="active">
+    {{ activeText }}
+    <img src="/assets/svg/arrow.svg" alt="" />
+  </span>
+  <div class="list">
+    <div class="item" *ngFor="let item of options" (click)="value = item.value">
+      {{ item.text }}
+    </div>
+  </div>
+</div>

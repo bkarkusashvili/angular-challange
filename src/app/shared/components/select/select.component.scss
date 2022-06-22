@@ -1,0 +1,52 @@
+.wrap {
+  position: relative;
+  cursor: pointer;
+  border-radius: 5px;
+  background: #1bc5bd;
+  font-size: 16px;
+  font-weight: 400;
+
+  .active {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    padding-left: 13px;
+    padding-right: 12px;
+    color: #ffffff;
+
+    img {
+      margin-left: 26px;
+    }
+  }
+
+  .list {
+    visibility: hidden;
+    width: 100%;
+    position: absolute;
+    background: #1bc5bd;
+    border-radius: 0 0 5px 5px;
+    overflow: hidden;
+
+    .item {
+      display: flex;
+      align-items: center;
+      color: #ffffff;
+      height: 32px;
+      padding-left: 13px;
+      padding-right: 12px;
+      transition: background 0.3s;
+
+      &:hover {
+        background: darken(#1bc5bd, 8);
+      }
+    }
+  }
+
+  &.isOpen {
+    border-radius: 5px 5px 0 0;
+
+    .list {
+      visibility: visible;
+    }
+  }
+}

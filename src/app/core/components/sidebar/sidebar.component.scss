@@ -1,0 +1,17 @@
+aside {
+  display: flex;
+  flex-direction: column;
+  padding-left: 35px;
+  padding-top: 41px;
+  padding-right: 40px;
+
+  img {
+    max-width: 24px;
+    max-height: 24px;
+    margin-bottom: 24px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
